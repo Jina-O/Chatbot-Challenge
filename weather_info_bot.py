@@ -12,11 +12,11 @@ import random
 from slacker import Slacker
 
 # 슬랙 토큰으로 객체 생성
-token = 'xoxb-503818135714-506719126544-X4cg0Q14JAyU4NEORPLKYKbs'
+token = 'xoxb-503818135714-506719126544-4GYbCgOP0WWwiVbeRcu7lMVb'
 slack = Slacker(token)
 
 app = Flask(__name__)
-slack_token = 'xoxb-503818135714-506719126544-X4cg0Q14JAyU4NEORPLKYKbs'
+slack_token = 'xoxb-503818135714-506719126544-4GYbCgOP0WWwiVbeRcu7lMVb'
 slack_client_id = '503818135714.507453486050'
 slack_client_secret = '000a42568d8f21b437b7320175dda73f'
 slack_verification = 'PR5MTEUUU3wj5ArHBHB8kV8X'
@@ -29,7 +29,8 @@ temperatureValue = 0
 
 # 기온에 따른 옷 추천
 def choose_clothes(temperature):
-    photo_num = random.randrange(1, 4)
+    # temperature = "30"
+    photo_num = random.randrange(1, 11)
     photo_name = ".png"
 
     if (int(temperature) > 23):
@@ -39,11 +40,12 @@ def choose_clothes(temperature):
     else:
         photo_name = "winter" + str(photo_num) + photo_name
 
-    print("넘어온 온도값:::::::" + temperature)
+    photo_name = "./imgs/" + photo_name
+    #    print("넘어온 온도값:::::::"+temperature)
     return2hundreds()
-    slack.files.upload(photo_name, channels="#team6_test")
+    slack.files.upload(photo_name, channels="#day4")
 
-    return "오늘은 기온은 " + temperature + "℃ 입니다.\n오늘은 이렇게 입는 걸 추천 드려요!"
+    return "오늘 기온은 " + temperature + "℃ 입니다.\n오늘은 이렇게 입는 걸 추천 드려요!"
 
 
 def return2hundreds():
